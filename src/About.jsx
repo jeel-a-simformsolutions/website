@@ -1,10 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import web from "../src/images/employee.png";
+import Common from "./Common";
 
 const About = () => {
     return (
         <>
-        <h1>Welcome to the About page</h1>
-        </>
+        <Common 
+        name="Welcome to the About Page"
+        imgsrc={web}
+        visit="/Contect"
+        btname="Contect Now"/>
+         </>
     )
 }
 
