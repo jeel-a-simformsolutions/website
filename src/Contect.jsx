@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contect = () => {
+    const [data, setData] = useState({
+        fullname:"",
+        number:"",
+        email:"",
+        msg:"",
+    })
+
+    const InputEvent = (event) => {
+        const {name, value} = event.target;
+
+        setData((preVal) => {
+            return {
+                ... preVal,
+                [name] : value,
+            }
+        })
+    }
+
+    const formSubmit = (e) => {
+        e.preventDefault();
+        alert(`My Name is ${data.fullname}. My Mobile Number is ${data.number}.My Email id is ${data.email}.and The message is ${data.msg}.`)
+    }
     return (
         <>
             <div className="my-5">
@@ -9,38 +31,50 @@ const Contect = () => {
             <div className="container contact_div">
                 <div className="row">
                     <div className="col-md-6 col-10 mx-auto">
-                        <form>
-                            <div className="form-group">
-                                <label for="exampleFormControlInput1">Full Name</label>
+                        <form onSubmit={formSubmit}> 
+                            <div className="mb-3">
+                                <label for="exampleFormControlInput1" className="form-label">Full Name</label>
                                 <input type="text"
                                     className="form-control"
                                     id="exampleFormControlInput1"
+                                    name="fullname"
+                                    value={data.fullname}
+                                    onChange={InputEvent}
                                     placeholder="Enter your Name" />
                             </div>
-                            <div className="form-group">
-                                <label for="exampleFormControlInput1">Phone Number</label>
+                            <div className="mb-3">
+                                <label for="exampleFormControlInput1" className="form-label">Phone Number</label>
                                 <input type="number"
                                     className="form-control"
                                     id="exampleFormControlInput1"
+                                    name="number"
+                                    value={data.number}
+                                    onChange={InputEvent}
                                     placeholder="Mobile Number" />
                             </div>
-                            <div className="form-group">
-                                <label for="exampleFormControlInput1">Email address</label>
+                            <div className="mb-3">
+                                <label for="exampleFormControlInput1" className="form-label">Email address</label>
                                 <input type="email"
                                     className="form-control"
                                     id="exampleFormControlInput1"
+                                    name="email"
+                                    value={data.email}
+                                    onChange={InputEvent}
                                     placeholder="name@example.com" />
                             </div>
 
-                            <div className="form-group">
-                                <label for="exampleFormControlTextarea1">Message</label>
+                            <div className="mb-3">
+                                <label for="exampleFormControlTextarea1" className="form-label">Message</label>
                                 <textarea className="form-control"
                                     id="exampleFormControlTextarea1"
-                                    rows="3">
+                                    rows="3"
+                                    name="msg"
+                                    value={data.msg}
+                                    onChange={InputEvent}>
                                 </textarea>
                             </div>
                             <div className="col-12">
-                            <button class="btn btn-outline-primary" type="submit">Submit form</button>
+                            <button className="btn btn-outline-primary" type="submit">Submit form</button>
                             </div>
                         </form>
                     </div>
